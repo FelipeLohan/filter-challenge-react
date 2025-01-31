@@ -14,12 +14,13 @@ const ButtonStyled = styled.button`
 type Props = {
   text: string;
   buttonType: any;
+  handleClick: Function;
 }
 
-const CtaButton = ({text, buttonType}: Props) => {
+const CtaButton = ({text, buttonType, handleClick}: Props) => {
   return(
     <>
-    <ButtonStyled type={buttonType}> {text} </ButtonStyled>
+    <ButtonStyled type={buttonType} onClick={handleClick}> {text} </ButtonStyled>
     </>
   )
 }

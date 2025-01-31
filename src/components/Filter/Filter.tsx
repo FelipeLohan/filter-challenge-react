@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { CtaButton } from "../CtaButton";
 import { Input } from "../Input";
 import { useState } from "react";
+import * as productService from "../../services/product-service.ts"
 
 const FilterContainer = styled.section`
   width: 80%;
@@ -31,10 +32,19 @@ const Filter = () => {
     maxPrice: 0
   })
 
-  function handleChange(e){
+  function handleChange(e: any){
     const value = e.target.value;
     const name = e.target.name;
     setFormData({...formData, [name]: value})
+  }
+
+  function handleFilterButton(e: any){
+    e.preventDefault();
+
+    const filteredProducts = productService.findByPrice(formData.minPrice, formData.maxPrice);
+
+    console.log(filteredProducts)
+    return filteredProducts;
   }
 
   return (
@@ -55,7 +65,7 @@ const Filter = () => {
             value={formData.maxPrice}
             handleChange={handleChange}
           />
-          <CtaButton type="submit" text="Filtrar" />
+          <CtaButton type="submit" text="Filtrar" handleClick={handleFilterButton} />
         </FormContainer>
       </FilterContainer>
     </>
