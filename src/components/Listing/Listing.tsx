@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import { ProductCard } from "../ProductCard"
+import * as productService from "../../services/product-service.ts"
 
 const ListingContainer = styled.section`
   width: 80%;
@@ -17,8 +18,9 @@ const Listing = () => {
   return(
     <>
       <ListingContainer>
-        <ProductCard productName="Computador Pro" productPrice={1200} />
-        <ProductCard productName="Computador Pro" productPrice={1200} />
+        {
+          productService.products.map((e) => <ProductCard key={e.id} productName={e.name} productPrice={e.price} />)
+        }
       </ListingContainer>
     </>
   )

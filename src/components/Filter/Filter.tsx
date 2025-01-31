@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { CtaButton } from "../CtaButton";
 import { Input } from "../Input";
+import { useState } from "react";
 
 const FilterContainer = styled.section`
   width: 80%;
@@ -19,6 +20,23 @@ const FormContainer = styled.form`
 `;
 
 const Filter = () => {
+
+  type FormData = {
+    minPrice: number,
+    maxPrice: number
+  }
+
+  const [formData, setFormData] = useState<FormData>({
+    minPrice: 0,
+    maxPrice: 0
+  })
+
+  function handleChange(e){
+    const value = e.target.value;
+    const name = e.target.name;
+    setFormData({...formData, [name]: value})
+  }
+
   return (
     <>
       <FilterContainer>
@@ -27,13 +45,15 @@ const Filter = () => {
             placeholderText="Preço mínimo"
             inputType="number"
             name="minPrice"
-            value={0}
+            value={formData.minPrice}
+            handleChange={handleChange}
           />
           <Input
             placeholderText="Preço máximo"
             inputType="number"
             name="maxPrice"
-            value={0}
+            value={formData.maxPrice}
+            handleChange={handleChange}
           />
           <CtaButton type="submit" text="Filtrar" />
         </FormContainer>

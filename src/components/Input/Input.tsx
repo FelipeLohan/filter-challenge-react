@@ -18,12 +18,13 @@ type Props = {
   inputType: string;
   name: string;
   value: number;
+  handleChange: Function;
 }
 
-const Input = ({placeholderText, inputType, name, value}: Props) => {
+const Input = ({placeholderText, inputType, name, value, handleChange}: Props) => {
   return(
   <>
-    <InputStyled placeholder={placeholderText} type={inputType} name={name} value={value} />
+    <InputStyled placeholder={placeholderText} type={inputType} name={name} value={value} onChange={handleChange} />
   </>
   );
 };
