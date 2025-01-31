@@ -11,10 +11,17 @@ const InputStyled = styled.input`
   }
 `
 
-const Input = () => {
+type Props = {
+  placeholderText: string;
+  type: string;
+  name: string;
+  value: number;
+}
+
+const Input = ({placeholderText, type, name, value}: Props) => {
   return(
   <>
-    <InputStyled />
+    <InputStyled placeholder={placeholderText} type={type} name={name} value={value} />
   </>
   );
 };
