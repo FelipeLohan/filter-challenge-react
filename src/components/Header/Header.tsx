@@ -5,6 +5,7 @@ const HeaderContainer = styled.header`
   display: flex;
   align-items: center;
   background-color: #55BC04;
+  margin-bottom: 40px;
 `;
 
 const HeaderContent = styled.div`
@@ -15,6 +16,7 @@ const HeaderContent = styled.div`
   align-items: center;
   color: #fff;
 `;
+
 
 const Header = () => {
   return (

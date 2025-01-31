@@ -7,17 +7,18 @@ const ButtonStyled = styled.button`
   border: none;
   border-radius: 8px;
   width: 100%;
+  font-size: 2.2vmin;
 `
 
 type Props = {
   text: string;
-  type: string;
+  buttonType: string;
 }
 
-const CtaButton = ({text, type}: Props) => {
+const CtaButton = ({text, buttonType}: Props) => {
   return(
     <>
-    <ButtonStyled type={type} >{text}</ButtonStyled>
+    <ButtonStyled type={buttonType}> {text} </ButtonStyled>
     </>
   )
 }

@@ -2,9 +2,11 @@ import styled from "styled-components";
 
 const InputStyled = styled.input`
   border: 1px solid #C2C2C2;
-  padding: 5px;
+  border-radius: 12px;
+  padding: 10px;
   background-color: #fff;
   font-size: 2.2vmin;
+  width: 100%;
 
   &::placeholder {
     color: #C2C2C2;
@@ -13,15 +15,15 @@ const InputStyled = styled.input`
 
 type Props = {
   placeholderText: string;
-  type: string;
+  inputType: string;
   name: string;
   value: number;
 }
 
-const Input = ({placeholderText, type, name, value}: Props) => {
+const Input = ({placeholderText, inputType, name, value}: Props) => {
   return(
   <>
-    <InputStyled placeholder={placeholderText} type={type} name={name} value={value} />
+    <InputStyled placeholder={placeholderText} type={inputType} name={name} value={value} />
   </>
   );
 };
