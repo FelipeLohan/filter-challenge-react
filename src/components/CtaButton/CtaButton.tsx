@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import styled from "styled-components"
 
 const ButtonStyled = styled.button`
@@ -12,7 +13,7 @@ const ButtonStyled = styled.button`
 
 type Props = {
   text: string;
-  buttonType: string;
+  buttonType: any;
 }
 
 const CtaButton = ({text, buttonType}: Props) => {

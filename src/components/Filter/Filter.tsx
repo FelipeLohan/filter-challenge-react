@@ -8,6 +8,7 @@ const FilterContainer = styled.section`
   background-color: #fff;
   padding: 40px;
   border-radius: 12px;
+  margin-bottom: 20px;
 `;
 
 const FormContainer = styled.form`
