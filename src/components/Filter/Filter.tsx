@@ -23,21 +23,22 @@ const FormContainer = styled.form`
 
 const Filter = () => {
 
-  const {contextProductList, setContextProductList} = useContext(ContextProductList)
+  const {setContextProductList} = useContext(ContextProductList)
 
   type FormData = {
-    minPrice: number,
-    maxPrice: number
+    minPrice?: number,
+    maxPrice?: number
   }
 
   const [formData, setFormData] = useState<FormData>({
-    minPrice: 0,
-    maxPrice: 0
+    minPrice: undefined,
+    maxPrice: undefined
   })
 
   function handleChange(e: any){
-    const value = e.target.value;
+    const value = Number(e.target.value);
     const name = e.target.name;
+
     setFormData({...formData, [name]: value})
   }
 
@@ -47,7 +48,6 @@ const Filter = () => {
     const filteredProducts = productService.findByPrice(formData.minPrice, formData.maxPrice);
       
     setContextProductList(filteredProducts)
-    console.log(contextProductList)
 
   }
 
@@ -59,14 +59,14 @@ const Filter = () => {
             placeholderText="Preço mínimo"
             inputType="number"
             name="minPrice"
-            value={formData.minPrice}
+            value={formData.minPrice || ""}
             handleChange={handleChange}
           />
           <Input
             placeholderText="Preço máximo"
             inputType="number"
             name="maxPrice"
-            value={formData.maxPrice}
+            value={formData.maxPrice || ""}
             handleChange={handleChange}
           />
           <CtaButton type="submit" text="Filtrar" handleClick={handleFilterButton} />
