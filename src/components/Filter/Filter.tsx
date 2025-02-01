@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import { CtaButton } from "../CtaButton";
 import { Input } from "../Input";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import * as productService from "../../services/product-service.ts"
+import { ContextProductList } from "../../utils/context-productList.ts";
 
 const FilterContainer = styled.section`
   width: 80%;
@@ -21,6 +22,8 @@ const FormContainer = styled.form`
 `;
 
 const Filter = () => {
+
+  const {contextProductList, setContextProductList} = useContext(ContextProductList)
 
   type FormData = {
     minPrice: number,
@@ -42,9 +45,10 @@ const Filter = () => {
     e.preventDefault();
 
     const filteredProducts = productService.findByPrice(formData.minPrice, formData.maxPrice);
+      
+    setContextProductList(filteredProducts)
+    console.log(contextProductList)
 
-    console.log(filteredProducts)
-    return filteredProducts;
   }
 
   return (
