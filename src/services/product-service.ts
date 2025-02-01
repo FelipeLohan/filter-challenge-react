@@ -10,6 +10,27 @@ export function showAllProducts(): ProductDTO[]{
   return products;
 }
 
+export function minMaxProduct(productList: ProductDTO[]){
+  let maxValue = 0
+  let minValue = Number.MAX_VALUE
+  
+
+  productList.forEach(e => {
+    if(e.price > maxValue){
+      maxValue = e.price
+    }
+
+    if(e.price < minValue){
+      minValue = e.price
+    }
+  });
+
+  const minMax = [minValue, maxValue]
+  console.log(minMax)
+
+  return minMax
+}
+
 export const products: ProductDTO[] = [
   {
     id: 1,

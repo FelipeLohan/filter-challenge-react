@@ -45,6 +45,8 @@ const Filter = () => {
     const filteredProducts = productService.findByPrice(formData.minPrice || 0, formData.maxPrice || Number.MAX_VALUE);
       
     setContextProductList(filteredProducts)
+    productService.minMaxProduct(filteredProducts);
+
 
   }
 
