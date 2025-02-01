@@ -2,10 +2,14 @@ import styled from "styled-components";
 import { CtaButton } from "../CtaButton";
 import { Input } from "../Input";
 import { useContext, useState } from "react";
-import * as productService from "../../services/product-service.ts"
+import * as productService from "../../services/product-service.ts";
 import { ContextProductList } from "../../utils/context-productList.ts";
+import { MinMax } from "../MinMax/MinMax.tsx";
 
 const FilterContainer = styled.section`
+  display: flex;
+  align-items: center;
+  gap: 40px;
   width: 80%;
   margin: 0 auto;
   background-color: #fff;
@@ -22,32 +26,36 @@ const FormContainer = styled.form`
 `;
 
 const Filter = () => {
-
-  const {setContextProductList} = useContext(ContextProductList)
+  const { setContextProductList } = useContext(ContextProductList);
 
   type FormData = {
-    minPrice?: number,
-    maxPrice?: number
-  }
+    minPrice?: number;
+    maxPrice?: number;
+  };
 
-  const [formData, setFormData] = useState<FormData>({})
+  const [formData, setFormData] = useState<FormData>({});
+  const [minValue, setMinValue] = useState<number>();
+  const [maxValue, setMaxValue] = useState<number>();
 
-  function handleChange(e: any){
+  function handleChange(e: any) {
     const value = Number(e.target.value);
     const name = e.target.name;
 
-    setFormData({...formData, [name]: value})
+    setFormData({ ...formData, [name]: value });
   }
 
-  function handleFilterButton(e: any){
+  function handleFilterButton(e: any) {
     e.preventDefault();
 
-    const filteredProducts = productService.findByPrice(formData.minPrice || 0, formData.maxPrice || Number.MAX_VALUE);
-      
-    setContextProductList(filteredProducts)
-    productService.minMaxProduct(filteredProducts);
+    const filteredProducts = productService.findByPrice(
+      formData.minPrice || 0,
+      formData.maxPrice || Number.MAX_VALUE
+    );
 
-
+    setContextProductList(filteredProducts);
+    const minMaxResult = productService.minMaxProduct(filteredProducts);
+    setMinValue(minMaxResult[0]);
+    setMaxValue(minMaxResult[1]);
   }
 
   return (
@@ -68,8 +76,15 @@ const Filter = () => {
             value={formData.maxPrice || ""}
             handleChange={handleChange}
           />
-          <CtaButton type="submit" text="Filtrar" handleClick={handleFilterButton} />
+          <CtaButton
+            type="submit"
+            text="Filtrar"
+            handleClick={handleFilterButton}
+          />
         </FormContainer>
+        {minValue && maxValue && (
+          <MinMax minValue={minValue} maxValue={maxValue} />
+        )}
       </FilterContainer>
     </>
   );
