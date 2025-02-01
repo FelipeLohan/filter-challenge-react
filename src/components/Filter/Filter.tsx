@@ -30,10 +30,7 @@ const Filter = () => {
     maxPrice?: number
   }
 
-  const [formData, setFormData] = useState<FormData>({
-    minPrice: undefined,
-    maxPrice: undefined
-  })
+  const [formData, setFormData] = useState<FormData>({})
 
   function handleChange(e: any){
     const value = Number(e.target.value);
@@ -45,7 +42,7 @@ const Filter = () => {
   function handleFilterButton(e: any){
     e.preventDefault();
 
-    const filteredProducts = productService.findByPrice(formData.minPrice, formData.maxPrice);
+    const filteredProducts = productService.findByPrice(formData.minPrice || 0, formData.maxPrice || Number.MAX_VALUE);
       
     setContextProductList(filteredProducts)
 
