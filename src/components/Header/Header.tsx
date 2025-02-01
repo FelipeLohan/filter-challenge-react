@@ -1,10 +1,12 @@
+import { useContext } from "react";
 import styled from "styled-components";
+import { ContextProductList } from "../../utils/context-productList";
 
 const HeaderContainer = styled.header`
   padding: 40px 0;
   display: flex;
   align-items: center;
-  background-color: #55BC04;
+  background-color: #55bc04;
   margin-bottom: 40px;
 `;
 
@@ -18,13 +20,17 @@ const HeaderContent = styled.div`
 `;
 
 
+
 const Header = () => {
+
+  const { contextProductList } = useContext(ContextProductList);
+
   return (
     <>
       <HeaderContainer>
         <HeaderContent>
           <h1>DSFilter</h1>
-          <h3>6 produtos</h3>
+          <h3>{contextProductList.length} produtos</h3>
         </HeaderContent>
       </HeaderContainer>
     </>
