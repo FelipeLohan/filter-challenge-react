@@ -29,7 +29,7 @@ const Header = () => {
     <>
       <HeaderContainer>
         <HeaderContent>
-          <h1>DSFilter</h1>
+          <h1>Product Filter</h1>
           <h3>{contextProductList.length} produtos</h3>
         </HeaderContent>
       </HeaderContainer>
