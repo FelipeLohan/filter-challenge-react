@@ -56,6 +56,13 @@ const Filter = () => {
     const minMaxResult = productService.minMaxProduct(filteredProducts);
     setMinValue(minMaxResult[0]);
     setMaxValue(minMaxResult[1]);
+    
+    function onFilter(min, max){
+      console.log(min)
+      console.log(max)
+    }
+
+    return onFilter(minValue, maxValue)
   }
 
   return (
